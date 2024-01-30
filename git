@@ -1,0 +1,13 @@
+1.git push/pull/clone操作时的443错误/GitHub无法访问问题
+原因：git没有走代理导致被墙。
+解决方案：根据代理软件的配置为git添加代理。
+git config --global http.proxy 'socks5://127.0.0.1:10808' // 10808替换成自己本机socks的端口名 
+git config --global https.proxy 'socks5://127.0.0.1:10808' // 10808替换成自己本机socks的端口名
+来源更为详细https://xrebirth.github.io/posts/6204da2e.html。
+2.git进行push时无法使用用户名+密码登录github
+原因：gihub不再支持密码登录，只能使用ssh和token登录。
+解决方案：在个人设置中创建token或使用ssh登录。
+3.为什么我本地push的文件在github上显示上传的人是另一个
+原因：git签名会在上传时标注上传的人，如果与github上的用户不一致就会显示别人上传的。
+解决方案：更改签名。
+4.ssh连接超时
