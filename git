@@ -11,3 +11,13 @@ git config --global https.proxy 'socks5://127.0.0.1:10808' // 10808替换成自�
 原因：git签名会在上传时标注上传的人，如果与github上的用户不一致就会显示别人上传的。
 解决方案：更改签名。
 4.ssh连接超时
+原因：22端口被防火墙阻止
+解决方案：通过ssh -T -p 443 git@github.com测试是否可以连通，如果显示通过身份验证就可以在~/.ssh/修改config文件添加配置
+Host github.com
+User YourEmail（你的邮箱）
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+Port 443
+再次进行push测试，成功。
+总结：解决时间过长的原因，每一步没有进行测试，导致有时问题解决了还是没发现。
